@@ -74,7 +74,7 @@ public class CreateObjects : MonoBehaviour
         LeanTween.move(obj, new Vector3(0,50,0), 1.2f).setEase(LeanTweenType.easeInBounce);
     }
     public void DowPanelInicio(RectTransform obj) {
-        LeanTween.move(obj, new Vector3(0, -150, 0), 1.2f).setEase(LeanTweenType.easeInBounce); ;
+        LeanTween.move(obj, new Vector3(0, -150, 0), 1.2f).setEase(LeanTweenType.easeInBounce); 
     }
     public void BotonCrear(RectTransform obj) {
         active = !active;
