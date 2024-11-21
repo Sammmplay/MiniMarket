@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2898095511739528922}
   - component: {fileID: 5680687654466229297}
+  - component: {fileID: 5568548486731161323}
   m_Layer: 0
   m_Name: cash-register
   m_TagString: Selected
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 220179770259095247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.794, y: 0, z: 0}
+  m_LocalPosition: {x: 0.794, y: 0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53,8 +54,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.630231, z: 0.91904473}
-  m_Center: {x: 0, y: 0.30522352, z: 0.022973776}
+  m_Size: {x: 1, y: 0.6546136, z: 0.91904473}
+  m_Center: {x: 0, y: 0.29303223, z: 0.022973776}
+--- !u!54 &5568548486731161323
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220179770259095247}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!1 &2661526138824045177
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,10 @@ public class ManagerState : MonoBehaviour
     StateMove _stateMove = new StateMove();
     StateRotar _stateRotar = new StateRotar();
     StateEliminar _stateEliminar = new StateEliminar();
-    [SerializeField]public Button _abajo;
+    stateScale _stateScale = new stateScale();
+    [SerializeField] public Button _abajo;
     [SerializeField] public GameObject[] _panelText;
+    [SerializeField] GameObject[] _esferaObject;
     public Vector2 _positionPanelInstanceFuera = new Vector3(490, -20, 0);
     public Vector2 _positionPanelinstanceDentro = new Vector3(-90,-20,0);
     public Vector2 _positionPanelCentroCreacion = new Vector3(0, 50, 0);
@@ -24,9 +26,7 @@ public class ManagerState : MonoBehaviour
     [SerializeField] public bool _selected;
     [SerializeField] public bool _panelUpDownCreacion;
     [SerializeField] public bool _panelInstancias;
-    private void Start() {
-
-    }
+    [SerializeField] public bool _esferaInstanciada;
     private void Update() {
         if(_currentState != null) {
             _currentState.Update(this);
@@ -88,6 +88,15 @@ public class ManagerState : MonoBehaviour
                     }
                     //actualizar el objeto seleccionado actual y encender su luz
                     _seleccionado = hit.collider.gameObject;
+                    if (!_esferaInstanciada)
+                    {
+                        _esferaObject[1] = Instantiate(_esferaObject[0], _seleccionado.transform);
+                        _esferaObject[1].transform.SetPositionAndRotation(hit.transform.position, Quaternion.identity);
+                        Vector3 _esferaScale = new Vector3(_esferaObject[1].transform.localScale.x - 0.5f, _esferaObject[1].transform.localScale.y, _esferaObject[1].transform.localScale.z - 0.5f);
+                        LeanTween.scale(_esferaObject[1], _esferaScale, 1f).setLoopPingPong().setEase(LeanTweenType.easeInOutSine);
+                        _esferaInstanciada = true;
+                    }
+                    
                     _selected = true;
                     Light selectedLigth = _seleccionado.GetComponentInChildren<Light>(); 
                     if(selectedLigth != null) {
@@ -104,6 +113,11 @@ public class ManagerState : MonoBehaviour
                         if (ligth != null) {
                             ligth.enabled = false;
                         }
+                    }
+                    if (_esferaObject != null)
+                    {
+                        Destroy(_esferaObject[1]);
+                        _esferaInstanciada = false;
                     }
                     _seleccionado = null;
                     _seleccionadoAntes = null;
@@ -138,5 +152,14 @@ public class ManagerState : MonoBehaviour
         if (_seleccionado == null) return;
         ChangeState(_stateEliminar);
     }
-   
+   public void stateScale()
+    {
+        if (!_selected && !_seleccionado) return;
+        ChangeState(_stateScale);
+    }
+    public void ButtonCancelScale()
+    {
+        _currentState.ExitState(this);
+    }
+    
 }
